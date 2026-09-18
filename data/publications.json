@@ -2,13 +2,14 @@
   {
     "title": "Think-Before-Draw: Decomposing Emotion Semantics & Fine-Grained Controllable Expressive Talking Head Generation",
     "displayTitle": "Think-Before-Draw: Decomposing Emotion Semantics & Fine-Grained Controllable Expressive Talking Head Generation",
-    "authors": "<strong>Hanlei Shi</strong>, Leyuan Qu, Yu liu, Di gao, Yuhua Zheng, Taihao Li",
+    "authors": "<strong>Hanlei Shi</strong>, Leyuan Qu, Yu Liu, Di Gao, Yuhua Zheng†, Taihao Li†",
     "type": "accepted",
     "isFirstAuthor": true,
     "showOnHomepage": true,
     "featuredOrder": 1,
     "venue": "Pattern Recognition",
     "year": "2026",
+    "acceptedDate": "2026-03",
     "thumbnail": "assets/publications/placeholder/TBD.png",
     "tags": [
       { "text": "Paper", "link": "https://doi.org/10.1016/j.patcog.2026.113593" },
@@ -18,13 +19,14 @@
   },
   {
     "title": "HOPE: Hierarchical Fusion for Optimized and Personality-Aware Estimation of Depression",
-    "authors": " <strong>Hanlei Shi*</strong>, Yu Liu*, Haoxun Li*, Yuxuan Ding*, Leyuan Qu, Taihao Li",
+    "authors": " <strong>Hanlei Shi*</strong>, Yu Liu*, Haoxun Li*, Yuxuan Ding*, Jiaxi Hu, Leyuan Qu†, Taihao Li†",
     "type": "accepted",
     "isFirstAuthor": true,
     "showOnHomepage": true,
     "featuredOrder": 2,
     "venue": "ACM'MM 2025",
     "year": "2025",
+    "acceptedDate": "2025-07",
     "highlight": "1st Place MPDD",
     "thumbnail": "assets/publications/placeholder/HOPE.png",
     "tags": [
@@ -33,12 +35,13 @@
   },
   {
     "title": "From Coarse to Nuanced: Cross-Modal Alignment of Fine-Grained Linguistic Cues and Visual Salient Regions for Dynamic Emotion Recognition",
-    "authors": "Yu Liu, Leyuan Qu, <strong>Hanlei Shi</strong>, Di Gao, Yuhua Zheng, Taihao Li",
+    "authors": "Yu Liu, Leyuan Qu, <strong>Hanlei Shi</strong>, Di Gao, Yuhua Zheng, Taihao Li†",
     "type": "accepted",
     "isFirstAuthor": false,
     "showOnHomepage": true,
     "venue": "IEEE Transactions on Affective Computing",
     "year": "2026",
+    "acceptedDate": "2026-08",
     "thumbnail": "assets/publications/placeholder/GRACE.png",
     "tags": [
       { "text": "Paper", "link": "https://ieeexplore.ieee.org/abstract/document/11651356" },
@@ -47,27 +50,56 @@
   },
   {
     "title": "MSF-SER: Enriching Acoustic Modeling with Multi-Granularity Semantics for Speech Emotion Recognition",
-    "authors": "Haoxun Li, Yuqing Sun, <strong>Hanlei Shi</strong>, Yu Liu, Leyuan Qu, Taihao Li",
+    "authors": "Haoxun Li, Yuqing Sun, <strong>Hanlei Shi</strong>, Yu Liu, Leyuan Qu†, Taihao Li†",
     "type": "accepted",
     "isFirstAuthor": false,
     "showOnHomepage": false,
     "venue": "ICASSP 2026",
     "year": "2026",
+    "acceptedDate": "2026-01",
     "thumbnail": "assets/publications/placeholder/MSF-SER.png",
     "tags": [
       { "text": "Paper", "link": "https://ieeexplore.ieee.org/document/11465155" }
     ]
   },
   {
-    "title": "Centering Emotion Hotspots: Multimodal Local-Global Fusion and Cross-Modal Alignment for Emotion Recognition in Conversations",
-    "authors": "Yu Liu*, <strong>Hanlei Shi*</strong>, Haoxun Li, Yuqing Sun, Yuxuan Ding, Linlin Gong, Leyuan Qu, Taihao Li",
-    "type": "preprint",
+    "title": "EMORL-TTS: REINFORCEMENT LEARNING FOR FINE-GRAINED EMOTION CONTROL IN LLM-BASED TTS",
+    "authors": "Haoxun Li, Yu Liu, Yuqing Sun, <strong>Hanlei Shi</strong>, Leyuan Qu, Taihao Li†",
+    "type": "accepted",
     "isFirstAuthor": false,
     "showOnHomepage": false,
+    "venue": "ICASSP 2026",
     "year": "2026",
+    "acceptedDate": "2026-01",
+    "thumbnail": "assets/publications/placeholder/EMORL-TTS.png",
+    "tags": [
+      { "text": "Paper", "link": "https://ieeexplore.ieee.org/document/11460999" }
+    ]
+  },
+  {
+    "title": "Centering Emotion Hotspots: Multimodal Local-Global Fusion and Cross-Modal Alignment for Emotion Recognition in Conversations",
+    "authors": "Yu Liu*, <strong>Hanlei Shi*</strong>, Haoxun Li, Yuqing Sun, Yuxuan Ding, Linlin Gong, Leyuan Qu, Taihao Li†",
+    "type": "preprint",
+    "isFirstAuthor": true,
+    "showOnHomepage": false,
+    "year": "2025",
     "thumbnail": "assets/publications/placeholder/hotspot.png",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2510.08606" }
+    ]
+  },
+  {
+    "title": "When Words Move: Inferring Semantic Intent to Animate Expressive Talking Heads",
+    "authors": "Xiaodong Xiang, <strong>Hanlei Shi†</strong>",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": false,
+    "venue": "Neurocomputing",
+    "year": "2026",
+    "acceptedDate": "2026-09",
+    "thumbnail": "assets/publications/placeholder/WWM.png",
+    "tags": [
+      { "text": "Paper", "link": "https://doi.org/10.1016/j.neucom.2026.135168" }
     ]
   }
 ]

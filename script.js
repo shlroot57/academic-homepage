@@ -86,7 +86,7 @@ function setupNavHighlight() {
         navLinks.forEach(link => {
             link.classList.remove('active');
             const target = (link.getAttribute('href') || '').replace('#', '');
-            if (target === current || (current === 'homepage' && target === 'about')) {
+            if (target === current) {
                 link.classList.add('active');
             }
         });
@@ -322,7 +322,7 @@ function createPublicationItem(pub) {
     const venueFullName = getVenueFullName(pub.venue, pub.year);
     const venueShortName = getVenueShortName(pub.venue, pub.year);
     const venueText = venueFullName || pub.venue || 'Preprint';
-    const showVenueTag = shouldShowVenueTag(pub.venue, venueFullName, venueShortName);
+    const showVenueTag = shouldShowVenueTag(pub.venue);
     const namesMatch = venueText.toLowerCase().trim() === String(venueShortName).toLowerCase().trim();
 
     if (!(showVenueTag && namesMatch)) {
@@ -361,7 +361,7 @@ function createPublicationItem(pub) {
         line4.className = 'pub-line-4';
 
         pub.tags.forEach(tag => {
-            const label = tag.text === 'Paper' ? 'PDF' : (tag.text || 'Link');
+            const label = tag.text || 'Link';
             const usableLink = hasUsableLink(tag.link);
 
             const button = document.createElement(usableLink ? 'a' : 'span');
@@ -605,25 +605,32 @@ function compareFeaturedPublications(a, b) {
 }
 
 function compareAllPublications(a, b) {
+    const timeA = getAcceptedTimestamp(a);
+    const timeB = getAcceptedTimestamp(b);
+    if (timeA !== timeB) {
+        return timeB - timeA;
+    }
+
     const yearA = getComparableYear(a);
     const yearB = getComparableYear(b);
     if (yearA !== yearB) {
         return yearB - yearA;
     }
 
-    const acceptedA = String(a.type || '').toLowerCase() === 'accepted' ? 1 : 0;
-    const acceptedB = String(b.type || '').toLowerCase() === 'accepted' ? 1 : 0;
-    if (acceptedA !== acceptedB) {
-        return acceptedB - acceptedA;
-    }
-
-    const orderA = a.featuredOrder ?? Number.MAX_SAFE_INTEGER;
-    const orderB = b.featuredOrder ?? Number.MAX_SAFE_INTEGER;
-    if (orderA !== orderB) {
-        return orderA - orderB;
-    }
-
     return String(a.title || '').localeCompare(String(b.title || ''));
+}
+
+function getAcceptedTimestamp(pub) {
+    const raw = String(pub.acceptedDate || '').trim();
+    if (!raw) {
+        return String(pub.type || '').toLowerCase() === 'accepted' ? 0 : -1;
+    }
+
+    const parts = raw.replace(/\./g, '-').split('-').map(Number);
+    const year = parts[0] || 0;
+    const month = parts[1] || 1;
+    const day = parts[2] || 1;
+    return Date.UTC(year, month - 1, day);
 }
 
 function getComparableYear(pub) {
@@ -707,11 +714,6 @@ function getVenueShortName(venueStr, year) {
         revisionSuffix = ', Minor';
     }
 
-    const highlighted = getHighlightedVenueLabel(venueStr);
-    if (highlighted) {
-        return highlighted + revisionSuffix;
-    }
-
     let s = venueStr.replace(/\d{4}/g, '').trim();
     let suffix = '';
 
@@ -740,17 +742,12 @@ function getVenueShortName(venueStr, year) {
     if (s.includes('TNSE')) return 'IEEE TNSE' + revisionSuffix;
     if (s.includes('IOTJ') || s.includes('IoTJ')) return 'IEEE IoTJ' + revisionSuffix;
 
-    return s || 'Preprint';
+    return venueStr.trim() || 'Preprint';
 }
 
 function getVenueFullName(venueStr) {
     if (!venueStr) {
         return '';
-    }
-
-    const highlighted = getHighlightedVenueLabel(venueStr);
-    if (highlighted) {
-        return highlighted;
     }
 
     const s = venueStr.replace(/\d{4}/g, '').trim();
@@ -776,53 +773,17 @@ function getVenueFullName(venueStr) {
 
     if (s.toLowerCase().includes('arxiv')) return 'arXiv preprint';
 
-    return s;
+    return venueStr.trim();
 }
 
-function getHighlightedVenueLabel(venueStr) {
-    const raw = String(venueStr || '').trim();
-    if (!raw) {
-        return '';
-    }
-
-    const s = raw.toLowerCase();
-
-    if (s.includes('pattern recognition') && !s.includes('computer vision') && !s.includes('cvpr')) {
-        return raw;
-    }
-
-    if (s.includes('acm') && (s.includes("mm") || s.includes('multimedia'))) {
-        return raw;
-    }
-
-    if (s.includes('transactions on affective computing') || s.includes('taffc')) {
-        return raw;
-    }
-
-    if (s.includes('icassp')) {
-        return raw;
-    }
-
-    return '';
-}
-
-function shouldShowVenueTag(venueStr, fullVenueName, venueShort) {
-    if (!venueShort) {
+function shouldShowVenueTag(venueStr) {
+    const venue = String(venueStr || '').trim();
+    if (!venue) {
         return false;
     }
 
-    if (venueStr && venueStr.toLowerCase().includes('under review')) {
-        return false;
-    }
-
-    if (getHighlightedVenueLabel(venueStr) || getHighlightedVenueLabel(venueShort)) {
-        return true;
-    }
-
-    const shortLower = venueShort.toLowerCase().trim();
-    const fullLower = String(fullVenueName || '').toLowerCase().trim();
-
-    if (!fullLower || shortLower === fullLower) {
+    const lower = venue.toLowerCase();
+    if (lower.includes('under review') || lower.includes('preprint') || lower.includes('arxiv')) {
         return false;
     }
 
